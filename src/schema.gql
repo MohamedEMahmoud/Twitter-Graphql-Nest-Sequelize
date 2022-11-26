@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthResponseType {
+  access_token: String
+  user: User!
+}
+
+input CreateFollowerInput {
+  followerId: Int!
+}
+
+input CreateLikeInput {
+  tweetId: Int!
+}
+
+input CreateTweetInput {
+  content: String!
+  image_url: String!
+}
+
+type Follower {
+  createdAt: String!
+  followerId: Int
+  id: Int!
+  updatedAt: String!
+  user: User!
+  userId: Int
+}
+
+type Like {
+  createdAt: String!
+  id: Int!
+  tweetId: Int
+  updatedAt: String!
+  user: User!
+  userId: Int
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type Mutation {
+  CreateTweet(createTweetInput: CreateTweetInput!): Tweet!
+  DeleteTweet(id: Int!): RemoveResponse!
+  DeleteUser: RemoveResponse!
+  UpdateTweet(updateTweetInput: UpdateTweetInput!): Tweet!
+  UpdateUser(updateUserInput: UpdateUserInput!): User!
+  createFollowerOrRemove(createFollowerInput: CreateFollowerInput!): Follower!
+  createLikeOrRemove(createLikeInput: CreateLikeInput!): Like!
+  login(loginInput: LoginInput!): AuthResponseType!
+  signup(registerInput: RegisterInput!): AuthResponseType!
+}
+
+type Query {
+  currentUser: User!
+  tweet(id: Int!): Tweet!
+  tweets: [Tweet!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+input RegisterInput {
+  avatar: String!
+  email: String!
+  password: String!
+  username: String!
+}
+
+type RemoveResponse {
+  message: String!
+  statusCode: Int!
+  success: Boolean!
+}
+
+type Tweet {
+  content: String!
+  createdAt: String!
+  id: Int!
+  image_url: String
+  likes: [Like!]!
+  updatedAt: String!
+  user: User!
+  userId: Int!
+}
+
+input UpdateTweetInput {
+  content: String
+  id: Int!
+  image_url: String
+}
+
+input UpdateUserInput {
+  avatar: String
+  email: String
+  password: String
+  username: String
+}
+
+type User {
+  avatar: String!
+  createdAt: String!
+  email: String!
+  followers: [Follower!]
+  id: Int!
+  token: String
+  tweets: [Tweet!]
+  updatedAt: String!
+  username: String!
+}
